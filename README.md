@@ -22,9 +22,8 @@ Aplicação simples para gerar tabuada usando HTML, CSS e JavaScript.
 
 ## Funcionalidades
 
--   Gera tabuada de 1 a 10
+-   Gera tabuada dos números que o usuário solicitar
 -   Interface simples
--   Responsivo
 
 ---
 
