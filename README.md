@@ -29,7 +29,3 @@ Aplicação simples para gerar tabuada usando HTML, CSS e JavaScript.
 ---
 
 Desenvolvido para fins educativos.
-
-```
-
-```
