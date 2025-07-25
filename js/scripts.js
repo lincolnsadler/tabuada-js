@@ -2,7 +2,6 @@ const multiplicationForm = document.querySelector("#tabuada-form");
 const number = document.querySelector("#numero");
 const limit = document.querySelector("#limite");
 const multiplicationTable = document.querySelector("#resultado");
-const span = document.querySelector("#span");
 
 const createTable = (number, multiplicator) => {
     multiplicationTable.innerHTML = "";
@@ -11,21 +10,16 @@ const createTable = (number, multiplicator) => {
     title.textContent = `Tabuada do número ${number} até ${multiplicator}`;
     multiplicationTable.appendChild(title);
 
-    for (i = 1; i <= multiplicator; i++) {
-        const result = number * i;
+  //  resumindo para os neandertais o let deixa isolado dentro do laço ai fica dahora para quando der erro rastrear o erro
+  for (let i = 1; i <= multiplicator; i++) {
+    const row = document.createElement("div");
+    row.classList.add("row");
 
-        const template = `
-        <div class="row">
-            <div class="operation">${number} x ${i}</div>
-            <div class="result">${result}</div>
-        </div>
+    // bem mais simples
+    row.innerHTML = `
+      <div class="operation">${number} x ${i}</div>
+      <div class="result">${number * i}</div>
     `;
-
-        const parser = new DOMParser();
-
-        const htmlTemplate = parser.parseFromString(template, "text/html");
-
-        const row = htmlTemplate.querySelector(".row");
 
         multiplicationTable.appendChild(row);
     }
@@ -34,11 +28,13 @@ const createTable = (number, multiplicator) => {
 multiplicationForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const multiplicationNumber = +number.value;
+  const multiplicationNumber = parseInt(number.value);
+  const multiplicatorNumber = parseInt(limit.value);
 
-    const multiplicatorNumber = +limit.value;
-
-    // if (!multiplicationNumber || !multiplicatorNumber) return;
+  if (!(multiplicationNumber) || !(multiplicatorNumber)) {
+    multiplicationTable.innerHTML = "<p>Por favor, insira números válidos.</p>";
+    return;
+  }
 
     createTable(multiplicationNumber, multiplicatorNumber);
 });
